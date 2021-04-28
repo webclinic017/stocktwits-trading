@@ -12,9 +12,6 @@ import math
 import threading
 import os
 
-# volume as a way to sell?
-
-# alpacas stuff
 
 settings = {
     'using_proxy': True,
@@ -187,11 +184,6 @@ def update_log(data):
         print(f'error reading csv')
         print(data)
         proceed = False
-    # log_df.columns = ['user', 'body', 'entity_sentiment', 'symbol', 'buy_price', 'qty', 
-    # 'buy_date', 'sell_date', 'fill_price', 'sell_price', 'win', 'canceled']
-    # log_df.set_index('date', inplace=True)
-    # log_df['date'] = pd.to_datetime(log_df['date'])
-    # log_df = log_df.sort_index(ascending=False)
     if data.event == 'fill' and proceed:
         print('fill')
         symbol = data.order['symbol']
@@ -238,8 +230,7 @@ def log_trade(df, ask_price, qty):
     f = open('data/trades.csv', 'a', encoding='utf-8')
     f.write(data)
 
-# buys 1k worth of shares
-# have to submit 
+
 def make_trade(df):
     date = df.index[0]
     user = df.iat[0,0]
@@ -284,7 +275,6 @@ def has_sold_today(symbol):
 
 
 
-# are we checking if we have sold the stock in the last 24hr?
 
 def can_make_trade(df):
     can_make_trade = False
